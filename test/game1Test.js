@@ -1,5 +1,6 @@
 const { loadFixture } = require('@nomicfoundation/hardhat-network-helpers');
 const { assert } = require('chai');
+const { ethers } = require("hardhat");
 
 describe('Game1', function () {
   async function deployContractAndSetVariables() {
@@ -14,6 +15,7 @@ describe('Game1', function () {
     const { game } = await loadFixture(deployContractAndSetVariables);
 
     // you must call unlock before you can win
+    await game.unlock();
 
     // leave this call to game.win() as-is
     await game.win();
